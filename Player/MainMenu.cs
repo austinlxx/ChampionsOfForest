@@ -47,7 +47,7 @@ namespace ChampionsOfForest
 		private bool Crouching;                         //used in hud display, when crouching scans enemies
 		private bool MenuInteractable;                  //determines if menu elements can be clicked or not
 		private GUIStyle MenuBtnStyle;                  //style of font for main menu button
-		private readonly float DarkeningSpeed = 2;      //speed of transion between menus
+		private readonly float DarkeningSpeed = 8;      //speed of transion between menus
 		public Font MainFont;                           //main font for the mod
 		private float requestResendTime = 0;            //float that measures time between difficulty request times
 
