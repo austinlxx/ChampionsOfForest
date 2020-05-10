@@ -870,6 +870,9 @@ namespace ChampionsOfForest
 				return;
 			}
 
+			if (LocalPlayer.IsInInventory)
+				LocalPlayer.Inventory.Close();
+
 			if (_openedMenu == OpenedMenuMode.Main)
 			{
 				StartCoroutine(FadeMenuSwitch(OpenedMenuMode.Hud));
