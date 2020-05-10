@@ -144,10 +144,7 @@ namespace ChampionsOfForest.Player
 										if (!infos[i].spell.CastOnRelease)
 										{
 
-											LocalPlayer.Stats.Energy -= infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
-											if (LocalPlayer.Stats.Stamina > LocalPlayer.Stats.Energy)
-												LocalPlayer.Stats.Stamina = LocalPlayer.Stats.Energy;
-											LocalPlayer.Stats.Stamina -= infos[i].spell.EnergyCost * ModdedPlayer.instance.SpellCostToStamina * ModdedPlayer.instance.SpellCostRatio;
+											LocalPlayer.Stats.Stamina -= infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
 
 											InfinityCooldownReduction();
 											Ready[i] = false;
@@ -169,10 +166,7 @@ namespace ChampionsOfForest.Player
 									{
 										if (LocalPlayer.Stats.Energy >= 10 && LocalPlayer.Stats.Stamina >= 10 && infos[i].spell.CanCast)
 										{
-											LocalPlayer.Stats.Energy -= Time.deltaTime * infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
-											if (LocalPlayer.Stats.Stamina > LocalPlayer.Stats.Energy)
-												LocalPlayer.Stats.Stamina = LocalPlayer.Stats.Energy;
-											LocalPlayer.Stats.Stamina -= Time.deltaTime * infos[i].spell.EnergyCost * ModdedPlayer.instance.SpellCostToStamina * ModdedPlayer.instance.SpellCostRatio;
+											LocalPlayer.Stats.Stamina -= Time.deltaTime * infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
 
 											infos[i].spell.active();
 											infos[i].spell.ChanneledTime += Time.deltaTime;
@@ -193,10 +187,7 @@ namespace ChampionsOfForest.Player
 								infos[i].spell.aimEnd?.Invoke();
 								if (Ready[i] && !ModdedPlayer.instance.Silenced && LocalPlayer.Stats.Energy >= infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio && LocalPlayer.Stats.Stamina >= infos[i].spell.EnergyCost * ModdedPlayer.instance.SpellCostToStamina * ModdedPlayer.instance.SpellCostRatio && infos[i].spell.CanCast)
 								{
-									LocalPlayer.Stats.Energy -= infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
-									if (LocalPlayer.Stats.Stamina > LocalPlayer.Stats.Energy)
-										LocalPlayer.Stats.Stamina = LocalPlayer.Stats.Energy;
-									LocalPlayer.Stats.Stamina -= infos[i].spell.EnergyCost * ModdedPlayer.instance.SpellCostToStamina * ModdedPlayer.instance.SpellCostRatio;
+									LocalPlayer.Stats.Stamina -= infos[i].spell.EnergyCost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
 
 									InfinityCooldownReduction();
 									Ready[i] = false;
@@ -278,13 +269,9 @@ namespace ChampionsOfForest.Player
 
 		public static bool RemoveStamina(float cost)
 		{
-			float realcostE = cost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
-			float realcostS = cost * ModdedPlayer.instance.SpellCostToStamina * ModdedPlayer.instance.SpellCostRatio;
-			if (LocalPlayer.Stats.Energy < realcostE && LocalPlayer.Stats.Stamina < realcostS)
+			float realcostS = cost * (1 - ModdedPlayer.instance.SpellCostToStamina) * ModdedPlayer.instance.SpellCostRatio;
+			if (LocalPlayer.Stats.Stamina < realcostS)
 				return false;
-			LocalPlayer.Stats.Energy -= realcostE;
-			if (LocalPlayer.Stats.Stamina > LocalPlayer.Stats.Energy)
-				LocalPlayer.Stats.Stamina = LocalPlayer.Stats.Energy;
 			LocalPlayer.Stats.Stamina -= realcostS;
 			return true;
 		}
