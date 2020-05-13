@@ -4036,7 +4036,7 @@ namespace ChampionsOfForest
 							}
 						}
 					}
-					GUIStyle descStyle = new GUIStyle(GUI.skin.box) { margin = new RectOffset(5, 5, Mathf.RoundToInt(10 * rr), 10), alignment = TextAnchor.UpperCenter, fontSize = Mathf.RoundToInt(28 * rr), font = MainFont, fontStyle = FontStyle.Normal, richText = true, wordWrap = true };
+					GUIStyle descStyle = new GUIStyle(GUI.skin.box) { margin = new RectOffset(5, 5, Mathf.RoundToInt(10 * rr), 10), alignment = TextAnchor.UpperCenter, fontSize = Mathf.RoundToInt(20 * rr), font = MainFont, fontStyle = FontStyle.Normal, richText = true, wordWrap = true };
 					Desc.height = descStyle.CalcHeight(new GUIContent(desctext), Desc.width) + 10 * rr;
 					GUI.Label(Desc, desctext, descStyle);
 
