@@ -106,7 +106,7 @@ namespace ChampionsOfForest.Player
 
                 new Buff(17, 131, "Berserk", false, false, 1, f =>Berserker.OnDisable(),f=> Berserker.OnEnable()) { DisplayAmount = false }; 
 
-                new Buff(18,161, "Energy Leak", true, false, 1, f => ModdedPlayer.instance.EnergyPerSecond += f, f => ModdedPlayer.instance.EnergyPerSecond -= f) {DisplayAmount = false };
+                new Buff(18,161, "Energy Leak", true, false, 1, f => ModdedPlayer.instance.StaminaRegen += f, f => ModdedPlayer.instance.StaminaRegen -= f) {DisplayAmount = false };
 
                 new Buff(19, 136, "Frenzy", false, false, 1, f => 
                 {

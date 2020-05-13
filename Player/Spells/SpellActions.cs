@@ -863,7 +863,8 @@ namespace ChampionsOfForest.Player
 
 		#region Blood Infused Arrow
 		public static float BIA_bonusDamage;
-		public static float BIA_SpellDmMult = 1.25f;
+		public static float BIA_SpellDmMult = 1.15f;
+		public static float BIA_RangedDmMult = 1.15f;
 		public static float BIA_HealthDmMult = 3f;
 		public static float BIA_HealthTakenMult = 0.65f;
 		public static bool BIA_TripleDmg = false, BIA_Weaken=false;
@@ -875,12 +876,20 @@ namespace ChampionsOfForest.Player
 			LocalPlayer.Stats.Health -= takenHP;
 			LocalPlayer.Stats.HealthTarget -= takenHP;
 			BIA_bonusDamage = takenHP * BIA_HealthDmMult;
-			BIA_bonusDamage += BIA_SpellDmMult * ModdedPlayer.instance.SpellDamageBonus;
-			BIA_bonusDamage *= ModdedPlayer.instance.SpellAMP;
+			if (ModdedPlayer.instance.SpellDamageBonus > ModdedPlayer.instance.RangedDamageBonus)
+			{
+				BIA_bonusDamage += BIA_SpellDmMult * ModdedPlayer.instance.SpellDamageBonus;
+				BIA_bonusDamage *= ModdedPlayer.instance.SpellAMP;
+			} 
+			else
+			{
+				BIA_bonusDamage += BIA_RangedDmMult * ModdedPlayer.instance.RangedDamageBonus;
+				BIA_bonusDamage *= ModdedPlayer.instance.RangedAMP;
+			}
 			if (BIA_TripleDmg)
 			{
 				BIA_bonusDamage *= 3;
-				BuffDB.AddBuff(18, 95, ModdedPlayer.instance.MaxEnergy/16, 8);
+				BuffDB.AddBuff(18, 95, ModdedPlayer.instance.MaxEnergy/150, 8);
 
 			}
 			if (ModdedPlayer.instance.IsHazardCrown)
